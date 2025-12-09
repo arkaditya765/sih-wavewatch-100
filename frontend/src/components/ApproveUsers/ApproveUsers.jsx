@@ -54,7 +54,7 @@ const ApproveUsers = () => {
       setLoading(false);
     }
   };
-}
+
   const handleApprove = async (userId, userName) => {
     if (!window.confirm(`Are you sure you want to approve ${userName}?`)) {
       return;
@@ -814,5 +814,5 @@ await axios.patch(
     </>
   );
 
-
+}
 export default ApproveUsers;
