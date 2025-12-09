@@ -1,0 +1,233 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap");
+
+.activeAlert-container {
+  display: flex;
+  flex-direction: column;
+  font-family: "Montserrat", sans-serif;
+  background: white;
+  border-radius: 12px;
+  padding: 24px;
+  margin-bottom: 24px;
+  height: 350px;
+}
+
+.activeAlert-title {
+  font-size: 20px;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.activeAlert-scrollContainer {
+  flex: 1;
+  overflow-y: auto;
+  padding-right: 8px;
+  margin-right: -8px;
+}
+
+.activeAlert-scrollContainer::-webkit-scrollbar {
+  width: 6px;
+}
+
+.activeAlert-scrollContainer::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 10px;
+}
+
+.activeAlert-scrollContainer::-webkit-scrollbar-thumb {
+  background: #c1c1c1;
+  border-radius: 10px;
+}
+
+.activeAlert-scrollContainer::-webkit-scrollbar-thumb:hover {
+  background: #a8a8a8;
+}
+
+.activeAlert-scrollContainer {
+  scrollbar-width: thin;
+  scrollbar-color: #c1c1c1 #f1f1f1;
+}
+
+.activeAlert-card {
+  border-radius: 8px;
+  overflow: hidden;
+  border: 1px solid #e5e5e5;
+  margin-bottom: 16px;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.activeAlert-card:hover {
+  transform: translateY(-1.5px);
+}
+
+.activeAlert-card:last-child {
+  margin-bottom: 0;
+}
+
+.activeAlert-header {
+  padding: 8px 16px;
+  text-align: center;
+}
+
+.activeAlert-badge {
+  color: white;
+  font-weight: 500;
+  font-size: 14px;
+}
+
+.activeAlert-content {
+  padding: 16px;
+}
+
+.activeAlert-iconTitle {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+.activeAlert-warningIcon {
+  flex-shrink: 0;
+}
+
+.activeAlert-type {
+  font-weight: 500;
+  font-size: 14px;
+}
+
+.activeAlert-time {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  margin-left: auto;
+  color: #666;
+  font-size: 14px;
+}
+
+.activeAlert-alertTitle {
+  font-size: 18px;
+  font-weight: 600;
+  color: #333;
+  margin: 0 0 12px 0;
+  line-height: 1.3;
+}
+
+.activeAlert-location {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  color: #666;
+  font-size: 14px;
+  line-height: 1.4;
+}
+
+.activeAlert-location svg {
+  margin-top: 2px;
+  flex-shrink: 0;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .activeAlert-container {
+    padding: 16px;
+    max-height: 400px;
+  }
+
+  .activeAlert-title {
+    font-size: 18px;
+    margin-bottom: 16px;
+  }
+
+  .activeAlert-card {
+    margin-bottom: 12px;
+  }
+
+  .activeAlert-content {
+    padding: 12px;
+  }
+
+  .activeAlert-alertTitle {
+    font-size: 16px;
+  }
+
+  .activeAlert-location {
+    font-size: 13px;
+  }
+
+  .activeAlert-iconTitle {
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+
+  .activeAlert-time {
+    margin-left: 0;
+    width: 100%;
+    margin-top: 4px;
+  }
+}
+
+@media (max-width: 480px) {
+  .activeAlert-container {
+    padding: 12px;
+    max-height: 350px;
+  }
+
+  .activeAlert-title {
+    font-size: 16px;
+  }
+
+  .activeAlert-alertTitle {
+    font-size: 15px;
+  }
+
+  .activeAlert-location {
+    font-size: 12px;
+  }
+
+  .activeAlert-content {
+    padding: 10px;
+  }
+
+  .activeAlert-badge {
+    font-size: 13px;
+  }
+}
+
+/****NEW STYLES*************/
+/* Keep all your existing CSS exactly the same and add these new styles */
+
+.activeAlert-loading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem;
+  color: #6b7280;
+  font-size: 1rem;
+}
+
+.activeAlert-error {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem;
+  color: #dc2626;
+  font-size: 1rem;
+  background-color: #fef2f2;
+  border: 1px solid #fecaca;
+  border-radius: 0.5rem;
+  margin: 1rem 0;
+}
+
+.activeAlert-empty {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem;
+  color: #6b7280;
+  font-size: 1rem;
+  background-color: #f9fafb;
+  border: 1px solid #e5e7eb;
+  border-radius: 0.5rem;
+  margin: 1rem 0;
+}
