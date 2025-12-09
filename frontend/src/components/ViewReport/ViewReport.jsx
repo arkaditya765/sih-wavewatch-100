@@ -1446,15 +1446,18 @@ const ViewReports = () => {
 
     try {
       // Call your backend endpoint which handles geocoding
-      const response = await axios.get(
-        `http://localhost:3000/reports/location`,
-        {
-          params: {
-            placeName: locationSearch,
-            radiusKm: 50, // Search within 50km radius
-          },
-        }
-      );
+const API = import.meta.env.VITE_API_URL;
+
+const response = await axios.get(
+  `${API}/reports/location`,
+  {
+    params: {
+      placeName: locationSearch,
+      radiusKm: 50,
+    },
+  }
+);
+
 
       if (response.data && response.data.success) {
         setReports(response.data.reports);
@@ -1503,12 +1506,15 @@ const ViewReports = () => {
     }
 
     try {
-      const response = await axios.patch(
-        `http://localhost:3000/reports/reject/${reportToReject._id}`,
-        {
-          rejectionReason: rejectionReason,
-        }
-      );
+      const API = import.meta.env.VITE_API_URL;
+
+const response = await axios.patch(
+  `${API}/reports/reject/${reportToReject._id}`,
+  {
+    rejectionReason,
+  }
+);
+
 
       if (response.data.success) {
         // Update local state
@@ -1561,9 +1567,12 @@ const ViewReports = () => {
         queryParams.append("sort", sortBy);
       }
 
-      const response = await axios.get(
-        `http://localhost:3000/reports?${queryParams.toString()}`
-      );
+      const API = import.meta.env.VITE_API_URL;
+
+const response = await axios.get(
+  `${API}/reports?${queryParams.toString()}`
+);
+
 
       if (response.data && response.data.reports) {
         setReports(response.data.reports);
@@ -1589,12 +1598,15 @@ const ViewReports = () => {
 
     // If verifying (was pending), proceed directly
     try {
-      const response = await axios.patch(
-        `http://localhost:3000/reports/verify/${reportId}/`,
-        {
-          isVerified: true,
-        }
-      );
+      const API = import.meta.env.VITE_API_URL;
+
+const response = await axios.patch(
+  `${API}/reports/verify/${reportId}/`,
+  {
+    isVerified: true,
+  }
+);
+
 
       if (response.data.success) {
         setReports((prevReports) =>
@@ -1704,14 +1716,17 @@ const ViewReports = () => {
     setSocialMediaError("");
 
     try {
-      const response = await axios.get(
-        `http://localhost:3000/reports/${reportId}/nearby-social`,
-        {
-          params: {
-            radiusKm: 50, // 50km radius
-          },
-        }
-      );
+      const API = import.meta.env.VITE_API_URL;
+
+const response = await axios.get(
+  `${API}/reports/${reportId}/nearby-social`,
+  {
+    params: {
+      radiusKm: 50,
+    },
+  }
+);
+
 
       if (response.data && response.data.success) {
         setNearbySocialMedia(response.data.nearbySocialMedia || []);

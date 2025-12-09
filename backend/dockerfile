@@ -1,11 +1,38 @@
+# -----------------------------------------
+# 1. Base image for dependencies
+# -----------------------------------------
 FROM node:20-alpine AS deps
 WORKDIR /app
+
+# Install required packages for node-gyp (if any)
+RUN apk add --no-cache python3 make g++
+
+cd backend
+docker build -t wavewatch-backend .
+docker run --env-file .env -p 3000:3000 wavewatch-backend
+
+# Install production dependencies
 COPY package.json package-lock.json ./
 RUN npm ci --production
 
+# -----------------------------------------
+# 2. Final runtime image
+# -----------------------------------------
 FROM node:20-alpine AS runner
 WORKDIR /app
+
+# Copy dependencies
 COPY --from=deps /app/node_modules ./node_modules
+
+# Copy backend source code
 COPY . .
+
+# Environment
+ENV NODE_ENV=production
+ENV PORT=3000
+
 EXPOSE 3000
+
+# Start the app
 CMD ["npm", "start"]
+

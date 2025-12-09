@@ -45,19 +45,22 @@ const SocialMediaAnalysis = () => {
   const fetchPosts = async () => {
     try {
       setLoading(true);
-      const response = await axios.get(
-        "http://localhost:3000/social-media/posts",
-        {
-          headers: {
-            "Cache-Control": "no-cache",
-            Pragma: "no-cache",
-            Expires: "0",
-          },
-          params: {
-            _t: new Date().getTime(),
-          },
-        }
-      );
+      const API = import.meta.env.VITE_API_URL;
+
+const response = await axios.get(
+  `${API}/social-media/posts`,
+  {
+    headers: {
+      "Cache-Control": "no-cache",
+      Pragma: "no-cache",
+      Expires: "0",
+    },
+    params: {
+      _t: new Date().getTime(),
+    },
+  }
+);
+
 
       const postsData = response.data.posts || response.data;
       setPosts(Array.isArray(postsData) ? postsData : []);
@@ -1021,3 +1024,4 @@ const SocialMediaAnalysis = () => {
 };
 
 export default SocialMediaAnalysis;
+

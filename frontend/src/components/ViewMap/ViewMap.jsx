@@ -265,14 +265,17 @@ const ViewMap = () => {
       }
 
       const queryString = params.toString();
-      const reportsUrl = `http://localhost:3000/reports${
-        queryString ? `?${queryString}` : ""
-      }`;
+      const API = import.meta.env.VITE_API_URL;
 
-      const [reportsResponse, socialMediaResponse] = await Promise.all([
-        axios.get(reportsUrl),
-        axios.get("http://localhost:3000/social-media/posts"),
-      ]);
+const reportsUrl = `${API}/reports${queryString ? `?${queryString}` : ""}`;
+
+
+
+const [reportsResponse, socialMediaResponse] = await Promise.all([
+  axios.get(reportsUrl),
+  axios.get(`${API}/social-media/posts`),
+]);
+
 
       setReports(reportsResponse.data.reports || []);
       setSocialMediaPosts(socialMediaResponse.data.posts || []);

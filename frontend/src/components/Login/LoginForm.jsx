@@ -153,10 +153,13 @@ const LoginForm = () => {
 
     try {
       // Replace with your actual backend URL
-      const response = await axios.post("http://localhost:3000/auth/login", {
-        email,
-        password,
-      });
+const API = import.meta.env.VITE_API_URL;
+
+const response = await axios.post(`${API}/auth/login`, {
+  email,
+  password,
+});
+
 
       // NEW: Check if the logged-in user's role matches the selected role
       if (response.data.user.role !== role) {

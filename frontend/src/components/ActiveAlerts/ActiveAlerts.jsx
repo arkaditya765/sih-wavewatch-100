@@ -47,8 +47,9 @@ const ActiveAlerts = () => {
     try {
       setLoading(true);
       // Replace with your actual API endpoint
-      const response = await axios.get("http://localhost:3000/alerts");
+      const API = import.meta.env.VITE_API_URL;
 
+      const response = await axios.get(`${API}/alerts`);
       if (response.data.success) {
         const mappedAlerts = response.data.data
           .filter((alert) => alert.isActive)

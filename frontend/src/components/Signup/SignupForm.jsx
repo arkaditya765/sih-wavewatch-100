@@ -157,11 +157,14 @@ const SignupForm = () => {
 
     try {
       // Replace with your actual backend URL
-      const response = await axios.post("http://localhost:3000/auth/signup", {
-        name,
-        email,
-        password,
-      });
+      const API = import.meta.env.VITE_API_URL;
+
+const response = await axios.post(`${API}/auth/signup`, {
+  name,
+  email,
+  password,
+});
+
 
       console.log("Signup successful:", response.data);
 

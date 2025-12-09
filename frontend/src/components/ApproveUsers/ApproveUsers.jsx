@@ -31,17 +31,18 @@ const ApproveUsers = () => {
   const fetchUsers = async () => {
     setLoading(true);
     setError("");
+    try{
 
-    try {
-      const token = localStorage.getItem("token");
+     const API = import.meta.env.VITE_API_URL;
+
       const response = await axios.get(
-        `http://localhost:3000/auth/users?status=${filter}`,
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      );
+      `${API}/auth/users?status=${filter}`,
+      {
+       headers: {
+       Authorization: `Bearer ${token}`,
+      },
+     });
+
 
       setUsers(response.data.users || []);
     } catch (err) {
@@ -53,7 +54,7 @@ const ApproveUsers = () => {
       setLoading(false);
     }
   };
-
+}
   const handleApprove = async (userId, userName) => {
     if (!window.confirm(`Are you sure you want to approve ${userName}?`)) {
       return;
@@ -62,18 +63,19 @@ const ApproveUsers = () => {
     setProcessingUser(userId);
     setError("");
     setSuccess("");
+ try{
+const API = import.meta.env.VITE_API_URL;
 
-    try {
-      const token = localStorage.getItem("token");
-      await axios.patch(
-        `http://localhost:3000/auth/approve-user/${userId}`,
-        {},
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      );
+await axios.patch(
+  `${API}/auth/approve-user/${userId}`,
+  {},
+  {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  }
+);
+ 
 
       setSuccess(`${userName} has been approved successfully!`);
       fetchUsers(); // Refresh the list
@@ -85,8 +87,8 @@ const ApproveUsers = () => {
     } finally {
       setProcessingUser(null);
     }
-  };
-
+  ;
+}
   const handleReject = async (userId, userName) => {
     if (!window.confirm(`Are you sure you want to reject ${userName}?`)) {
       return;
@@ -97,16 +99,18 @@ const ApproveUsers = () => {
     setSuccess("");
 
     try {
-      const token = localStorage.getItem("token");
-      await axios.patch(
-        `http://localhost:3000/auth/reject-user/${userId}`,
-        {},
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      );
+const API = import.meta.env.VITE_API_URL;
+
+await axios.patch(
+  `${API}/auth/reject-user/${userId}`,
+  {},
+  {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  }
+);
+
 
       setSuccess(`${userName} has been rejected.`);
       fetchUsers(); // Refresh the list
@@ -809,6 +813,6 @@ const ApproveUsers = () => {
       </div>
     </>
   );
-};
+
 
 export default ApproveUsers;

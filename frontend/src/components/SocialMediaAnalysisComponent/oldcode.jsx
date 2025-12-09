@@ -43,21 +43,32 @@ const SocialMediaAnalysis = () => {
   }, []);
 
   const fetchPosts = async () => {
-    try {
-      setLoading(true);
-      const response = await axios.get(
-        "http://localhost:3000/social-media/posts",
-        {
-          headers: {
-            "Cache-Control": "no-cache",
-            Pragma: "no-cache",
-            Expires: "0",
-          },
-          params: {
-            _t: new Date().getTime(),
-          },
-        }
-      );
+try {
+  setLoading(true);
+  const API = import.meta.env.VITE_API_URL;
+
+  const response = await axios.get(
+    `${API}/social-media/posts`,
+    {
+      headers: {
+        "Cache-Control": "no-cache",
+        Pragma: "no-cache",
+        Expires: "0",
+      },
+      params: {
+        _t: new Date().getTime(),
+      },
+    }
+  );
+
+  // ...rest of your logic
+} catch (err) {
+  console.error("Error fetching posts:", err);
+  setError("Failed to fetch posts");
+} finally {
+  setLoading(false);
+}
+try{
 
       const postsData = response.data.posts || response.data;
       setPosts(Array.isArray(postsData) ? postsData : []);

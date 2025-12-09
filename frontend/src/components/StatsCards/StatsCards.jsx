@@ -185,7 +185,9 @@ const StatsCards = () => {
     try {
       setLoading(true);
 
-      const response = await axios.get("http://localhost:3000/reports");
+const API = import.meta.env.VITE_API_URL;
+
+const response = await axios.get(`${API}/reports`);
 
       if (response.data.reports) {
         const calculatedStats = calculateStats(response.data.reports);

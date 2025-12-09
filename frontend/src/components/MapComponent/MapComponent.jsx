@@ -35,7 +35,10 @@ const MapComponent = () => {
     try {
       setLoading(true);
       // Replace with your actual API endpoint
-      const response = await axios.get("http://localhost:3000/reports");
+      const API = import.meta.env.VITE_API_URL;
+
+      const response = await axios.get(`${API}/reports`);
+
       setReports(response.data.reports || []);
       setError(null);
     } catch (err) {
