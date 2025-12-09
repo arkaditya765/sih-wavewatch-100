@@ -64,7 +64,7 @@ import AnalystDashboard from "./Pages/AnalystDashboard/AnalystDashboard";
 import AnalystReports from "./components/AnalystReports/AnalystReports";
 import AnalystMap from "./components/AnalystMap/AnalystMap";
 import AnalystCallReports from "./components/AnalystCallReports/AnalystCallReports";
-//import SmsReports from "./components/SMSReports/smsReports";
+import SmsReports from "./components/SMSReports/smsReports";
 import AnalysisPage from "./components/AnalysisPage/AnalysisPage";
 const App = () => {
   const location = useLocation();
